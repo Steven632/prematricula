@@ -29,10 +29,23 @@
                         $_SESSION['numEst']=$numEst;
                         $_SESSION['year']=$row['year_of_study'];
                         if($row['year_of_study'] == 0){
-                            header('location: admin/index.php');
+                            header('location: admin/prematricula.php');
                         }
                         else{
-                            header('location: users/index.php');
+                            
+                            $queryCheck = "SELECT * FROM checker LIMIT 1";
+                            if($result = $dbc->query($queryCheck))
+                            {
+                                while($row = $result->fetch_assoc())
+                                {
+                                    $checker = $row['bool'];
+                                }
+                            }
+                            
+                            if($checker == 0)
+                                header('location: users/index.php');
+                            else
+                                header('location: users/matricula.php');
                         }
                     }
                 }

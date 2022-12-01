@@ -100,7 +100,7 @@
 
 
 	<header>
-		<h1 class="heading">PORTAL DE PREMATRICULA</h1>
+		<h1 class="heading">PORTAL DE PRE-MATRÍCULA</h1>
 	</header>
 
 	<!-- container div -->
@@ -111,7 +111,7 @@
 		<div class="slider"></div>
 		<div class="btn">
 			<button class="login">Login</button>
-			<button class="signup">Signup</button>
+			<button class="signup">Register</button>
 		</div>
 
 		<!-- Form section that contains the
@@ -123,10 +123,10 @@
                 <div class="login-box">
                     <input type="text" name="numEst" maxlength=9 required
                         class="email ele"
-                        placeholder="Numero de estudiante">
+                        placeholder="Número de Estudiante">
                     <input type="password" name="password" minlength=8 required
                         class="password ele"
-                        placeholder="password">
+                        placeholder="Password">
                     <button class="clkbtn">Login</button>
                     <input type="hidden" name="submit1" value="">
                 </div>
@@ -137,17 +137,17 @@
                 <div class="signup-box">
                     <input type="text" name="nombre" required
                         class="name ele"
-                        placeholder="Nombre completo">
+                        placeholder="Nombre Completo">
                     <input type="password" name="password" minlength=8 required
                         class="password ele"
-                        placeholder="password">
+                        placeholder="Password">
                     <input type="text" name="numEst" maxlength=9 required 
                         class="email ele"
-                        placeholder ="Numero de estudiante">
+                        placeholder ="Número de Estudiante">
                     <input type="number" name="Year" maxlength=1 required
                         class="password ele"
-                        placeholder = "1">
-                    <button class="clkbtn">Signup</button>
+                        placeholder = "Año de Estudio">
+                    <button class="clkbtn">Register</button>
                     <input type="hidden" name="submit2" value="">
                 </div>
             </form>

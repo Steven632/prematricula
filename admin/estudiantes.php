@@ -21,6 +21,18 @@ Licence URI: http://www.os-templates.com/template-terms
 <!--<script type="text/javascript" src="../style/scripts/jquery.slidepanel.setup.js"></script>-->
 <script type="text/javascript" src="../style/scripts/jquery.ui.min.js"></script>
 <!--<script type="text/javascript" src="../style/scripts/jquery.tabs.setup.js"></script>-->
+    
+<style>
+    .student_link{
+        color: black;
+        
+    }
+    
+    .student_link:hover{
+       color: darkred;
+    }
+    
+</style>
 </head>
 <body>
 <!-- ####################################################################################################### -->
@@ -28,7 +40,7 @@ Licence URI: http://www.os-templates.com/template-terms
   <div id="header">
     <div id="logo">
         <br><br>
-        <h1>Portal de administrador de prematricula </h1>
+        <h1>Portal de administrador de pre-matrícula </h1>
     </div>
 
     <div style="padding-right: 250px" class="fl_right">
@@ -42,7 +54,11 @@ Licence URI: http://www.os-templates.com/template-terms
   <div id="topnav">
     <ul>
       <li><a href="cursos.php">Cursos</a>
-      <li class="active"><a href="estuiantes.php">Ver Estudiantes</a>
+      <li class="active"><a href="estudiantes.php">Ver Estudiantes</a>
+          <ul style="height: 100px">
+        </ul>
+      </li>
+        <li><a href="prematricula.php">Informe Matrícula</a>
           <ul style="height: 100px">
         </ul>
       </li>
@@ -79,7 +95,9 @@ Licence URI: http://www.os-templates.com/template-terms
     <div style="float:none; display:block; width:1000px" id="content">
         <?php 
        
-       $query = "SELECT * FROM student
+       $query = "SELECT name, year_of_study,
+                CONCAT (LEFT(student_id,3),'-',MID(student_id,4,2),'-',RIGHT(student_id,4)) AS student_id
+                    FROM student
                     WHERE year_of_study !=0";
                     
         $rowColor = 0;
@@ -87,8 +105,8 @@ Licence URI: http://www.os-templates.com/template-terms
         <thead>
           <tr>
             <th>Nombre</th>
-            <th>Número de estuidante</th>
-            <th>Año de estudio</th>
+            <th>Número de Estudiante</th>
+            <th>Año de Estudio</th>
           </tr>
         </thead><tbody>';
         
@@ -103,7 +121,7 @@ Licence URI: http://www.os-templates.com/template-terms
                     echo"<tr class='dark' style='text-align:center'>";
                   
                 
-                echo"<td>".$row['name']."</td>
+                echo"<td><a title='Ver pre-matrícula' class='student_link' href='cursos_de_estudiante.php?name=".$row['name']."'>".$row['name']."</a></td>
                     <td>".$row['student_id']."</td>
                     <td>".$row['year_of_study']."</td>";
                 
@@ -162,6 +180,5 @@ Licence URI: http://www.os-templates.com/template-terms
   </div>
 </div>
 <!-- ####################################################################################################### -->
-=
 </body>
 </html>

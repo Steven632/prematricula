@@ -28,7 +28,7 @@ Licence URI: http://www.os-templates.com/template-terms
   <div id="header">
     <div id="logo">
         <br><br>
-        <h1>Portal de administrador de prematricula </h1>
+        <h1>Portal de administrador de pre-matrícula </h1>
     </div>
 
     <div style="padding-right: 250px" class="fl_right">
@@ -44,6 +44,11 @@ Licence URI: http://www.os-templates.com/template-terms
       <li class="active"><a href="eliminar_curso.php">Cursos</a>
       <li><a href="cursos.php">Cursos</a>
       <li><a href="estuiantes.php">Ver Estudiantes</a>
+          <ul style="height: 100px">
+        </ul>
+      </li>
+        <li>
+        <a href="prematricula.php">Informe Matrícula</a>
           <ul style="height: 100px">
         </ul>
       </li>

@@ -19,7 +19,7 @@ session_start();
   <div id="header">
     <div id="logo">
         <br><br>
-        <h1>Portal de administrador de prematricula </h1>
+        <h1>Portal de administrador de pre-matrícula </h1>
     </div>
 
     <div style="padding-right: 250px" class="fl_right">
@@ -34,6 +34,10 @@ session_start();
     <ul>
       <li class="active"><a href="cursos.php">Cursos</a>
       <li><a href="estuiantes.php">Ver Estudiantes</a>
+          <ul style="height: 100px">
+        </ul>
+      </li><li>
+        <a href="prematricula.php">Informe Matrícula</a>
           <ul style="height: 100px">
         </ul>
       </li>

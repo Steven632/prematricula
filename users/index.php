@@ -49,6 +49,16 @@ Licence URI: http://www.os-templates.com/template-terms
 <!--<script type="text/javascript" src="../style/scripts/jquery.slidepanel.setup.js"></script>-->
 <script type="text/javascript" src="../style/scripts/jquery.ui.min.js"></script>
 <!--<script type="text/javascript" src="../style/scripts/jquery.tabs.setup.js"></script>-->
+    
+<style>
+
+    .input1{
+        color: red;
+    }
+    
+</style>    
+    
+    
 </head>
 <body>
 <!-- ####################################################################################################### -->
@@ -56,7 +66,7 @@ Licence URI: http://www.os-templates.com/template-terms
   <div id="header">
     <div id="logo">
         <br><br>
-        <h1>Portal de prematricula</h1>
+        <h1>Portal de pre-matrícula</h1>
     </div>
 
     <div style="padding-right: 250px" class="fl_right">
@@ -77,7 +87,7 @@ Licence URI: http://www.os-templates.com/template-terms
             if(isset($_POST['course']))
                 echo '<input style="height:30px;" type="text" name="course" placeholder="'.$_POST['course'].'" />';
             else
-                echo ' <input style="height:30px;" type="text" name="course" placeholder="Escriba el curso&hellip;" />';
+                echo ' <input style="height:30px;" type="text" name="course" placeholder="Escriba el ID del curso&hellip;" />';
             ?>
           <input id='search_submit' type="submit" name="submit2" id="news_go" value="Search" />
         </fieldset>
@@ -167,7 +177,7 @@ Licence URI: http://www.os-templates.com/template-terms
                                         echo' <input type="hidden" name="course" value="'.$_POST['course'].'">';
                                     echo'<input type="hidden" name="course_id" value="'.$row['course_id'].'">
                                     <input type="hidden" name="section_id" value="'.$row['section_id'].'">
-                                    <li><a title="El curso ya fue añadido!" href="#">'.$row['course_id'].'-'.$row['section_id'].'
+                                    <li><a style="color:#591434" title="El curso ya fue añadido!" href="#">'.$row['course_id'].'-'.$row['section_id'].'
                                     </a></li>
                                     </form>';
                                     $formid++;
@@ -207,7 +217,7 @@ Licence URI: http://www.os-templates.com/template-terms
                                             echo' <input type="hidden" name="course" value="'.$_POST['course'].'">';
                                             echo'<input type="hidden" name="course_id" value="'.$row['course_id'].'">
                                             <input type="hidden" name="section_id" value="'.$row['section_id'].'">
-                                            <li><a title="El curso ya fue añadido!" href="#">'.$row['course_id'].'-'.$row['section_id'].'
+                                            <li><a style="color:#591434" title="El curso ya fue añadido!" href="#">'.$row['course_id'].'-'.$row['section_id'].'
                                            </a></li>
                                     </form> ';
                                     $formid++;
@@ -254,7 +264,7 @@ Licence URI: http://www.os-templates.com/template-terms
 
                                echo'<input type="hidden" name="course_id" value="'.$row['course_id'].'">
                                 <input type="hidden" name="section_id" value="'.$row['section_id'].'">
-                                <li><a title="El curso ya fue añadido!" href="#">'.$row['course_id'].'-'.$row['section_id'].'
+                                <li><a style="color:#591434" title="El curso ya fue añadido!" href="#">'.$row['course_id'].'-'.$row['section_id'].'
                                 </a></li>
                                 </form> ';
                                 $formid++;

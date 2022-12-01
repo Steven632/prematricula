@@ -28,7 +28,7 @@ Licence URI: http://www.os-templates.com/template-terms
   <div id="header">
     <div id="logo">
         <br><br>
-        <h1>Portal de prematricula</h1>
+        <h1>Portal de pre-matrícula</h1>
     </div>
 
     <div style="padding-right: 250px" class="fl_right">

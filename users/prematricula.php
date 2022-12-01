@@ -8,12 +8,14 @@
     {
         //echo"YES";
         $c_id = $_POST['course_id'];
-        echo $c_id;
+//        echo $c_id;
         $user = $_SESSION['numEst'];
-        echo $user;
+       // echo $user;
     
         $queryDel = "DELETE FROM enrollment
-                WHERE student_id = $user AND course_id = '$c_id' LIMIT 1";
+                WHERE student_id = '$user' AND course_id = '$c_id' ";
+        
+        //echo $queryDel;
         
         if($dbc->query($queryDel) === TRUE){
            // echo"<br>Curso fue removido!";
@@ -51,7 +53,7 @@ Licence URI: http://www.os-templates.com/template-terms
   <div id="header">
     <div id="logo">
         <br><br>
-        <h1>Portal de prematricula</h1>
+        <h1>Portal de pre-matrícula</h1>
     </div>
 
     <div style="padding-right: 250px" class="fl_right">
@@ -103,13 +105,14 @@ Licence URI: http://www.os-templates.com/template-terms
     <div style="float:none; display:block; width:1000px" id="content">
         <?php 
         $user = $_SESSION['numEst'];
-        $query = "SELECT * FROM enrollment
-                    WHERE enrollment.student_id = $user";
+        $query = "SELECT * FROM enrollment JOIN course
+                    WHERE enrollment.course_id = course.course_id AND enrollment.student_id = $user";
         $rowColor = 0;
         echo'<table style="text-aling:center" cellpadding="0" cellspacing="0">
         <thead>
           <tr>
             <th>Curso</th>
+            <th>ID</th>
             <th>Sección</th>
             <th>Status</th>
             <th>Remover Curso</th>
@@ -127,7 +130,8 @@ Licence URI: http://www.os-templates.com/template-terms
                     echo"<tr class='dark' style='text-align:center'>";
                   
                 
-                echo"<td>".$row['course_id']."</td>
+                echo"<td>".$row['title']."</td>
+                <td>".$row['course_id']."</td>
                     <td>".$row['section_id']."</td>";
                 
                 if($row['status'] == 0)
@@ -139,7 +143,7 @@ Licence URI: http://www.os-templates.com/template-terms
                 
                 echo"<td>
                 <form action='prematricula.php' method='post'>
-                <input type='hidden' name='course_id' value=' ".$row['course_id']." '>
+                <input type='hidden' name='course_id' value='".$row['course_id']."'>
                 <input title='Eliminar ".$row['course_id']."-".$row['section_id']."' style='width: 30px; height: 30px' 
                 type='image' style='background-color: transparent' name='submit' src='../style/images/trash_can.png' border='0' alt='Submit' />
                 </form>
@@ -199,6 +203,6 @@ Licence URI: http://www.os-templates.com/template-terms
   </div>
 </div>
 <!-- ####################################################################################################### -->
-=
+
 </body>
 </html>

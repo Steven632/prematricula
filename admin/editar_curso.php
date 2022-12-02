@@ -60,11 +60,12 @@ if (isset($_GET['submit']))// procesar formulario
     $nombre= $_GET['title'];
     $course_id= $_GET['course_id'];
     $creditos= $_GET['credits'];
-    // $section=$_GET['section_id'];
-    // $capacidad= $_GET['capacity'];
-    $query = "INSERT INTO course (title, course_id, credits)
-                		VALUES ('$nombre', '$course_id', $creditos)";
-                      // INSERT INTO section ( course_id, section_id, capacity) VALUES ( '$course_id', '$section', $capacidad)
+    $section=$_GET['section_id'];
+    $capacidad= $_GET['capacity'];
+    $query = "UPDATE course (title, course_id, credits) VALUES ($nombre, '$course_id', $creditos)"; 
+    // --  INSERT INTO course (title, course_id, credits)
+    // --          		VALUES ('$nombre', '$course_id', $creditos)";
+    //                 --    INSERT INTO section ( course_id, section_id, capacity) VALUES ( '$course_id', '$section', $capacidad)
     
     // echo "<p>Insert query: ".$query."</p>";
 
@@ -79,8 +80,8 @@ if (isset($_GET['submit']))// procesar formulario
 ?>
 
 <!—Formulario solicitando datos del estudiante de honor -->
-<a href="crear_secciones.php">
-<form id='form1' name='form1' method='get' action='crear_curso.php'></a>
+<!-- <a href="crear_secciones.php"> -->
+<form id='form1' name='form1' method='get' action='editar_curso.php'></a>
   <table width='349' border='0'>
     <tr>
       <td width="200" align='right'>Nombre del curso</td>
@@ -94,7 +95,7 @@ if (isset($_GET['submit']))// procesar formulario
       <td align='right'>Creditos</td>
       <td align='left'><input name='credits' type='text' /></td>
     </tr>
-    <!-- <tr>
+    <tr>
       <td align='right'>Sección</td>
       <td align='left'><input type="text" name="section_id" required/></td>
     </tr>
@@ -102,7 +103,7 @@ if (isset($_GET['submit']))// procesar formulario
       <td align='right'>Capacidad</td>
       <td align='left'><input type="number" name='capacity' required/></td>
     </tr>
-     -->
+    
     <tr>
    <td colspan='2' align='center'> <input type='submit' name='submit' class="formbutton" value='Insertar' /> </td>
     </tr> 

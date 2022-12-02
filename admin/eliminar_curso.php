@@ -2,6 +2,9 @@
 
     session_start();
      include("../db_info.php");
+     echo '<pre>';
+     print_r($_SESSION);
+     echo '</pre>';
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -114,19 +117,19 @@ Licence URI: http://www.os-templates.com/template-terms
         echo"</table";
       }
       else
-        print'<h3 style="color:red;">Error, el estudiante no se encontró en la tabla</h3>';
+        print'<h3 style="color:red;">Error, el curso no se encontró en la tabla</h3>';
       }
       else
        print'<h3 style="color:red;">Error en el query: '.$dbc->error.'</h3>';
     }
-    elseif(isset($_POST['estID']) && is_numeric($_POST['estID']))
+    elseif(isset($_POST['course_id']) && is_numeric($_POST['course_id']))
     {
      //borrar est confirmado
-     $query = "DELETE FROM estudiante WHERE estID={$_POST['estID']} LIMIT 1";
+     $query = "DELETE FROM course WHERE course_id={$_POST['course_id']} LIMIT 1";
      if ($dbc->query($query) === TRUE) 
-       echo '<h3>El récord del estudiante ha sido eliminado con éxito. </h3>';
+       echo '<h3>El curso ha sido eliminado con éxito. </h3>';
      else 
-       print '<h3 style="color:red;">No se pudo eliminar al estudiante porque:<br />' . $dbc->error. '</h3>';
+       print '<h3 style="color:red;">No se pudo eliminar el curso porque:<br />' . $dbc->error. '</h3>';
      } 
      else
        print '<h3 style="color:red;">Esta página ha sido accedida con error</h3>';

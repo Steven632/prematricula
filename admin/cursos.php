@@ -2,15 +2,16 @@
 
     session_start();
      include("../db_info.php");
+     $delete = 'NO';
      if(isset($_POST['course_id']))
     {
-        //echo"YES";
+        // echo"YES";
         $c_id = $_POST['course_id'];
         echo $c_id;
        
     
-        $queryDel = "DELETE FROM course WHERE course_id = $c_id LIMIT  1 ";
-        
+        // $queryDel = "DELETE FROM course WHERE course_id = $c_id AND DELETE FROM section WHERE section.course_id=$c_id LIMIT  1 ";
+        $queryDel ="DELETE course, section FROM course INNER JOIN section ON course.course_id = section.course_id WHERE course.course_id=$c_id AND section.course_id = $c_id";
         if($dbc->query($queryDel) === TRUE){
            // echo"<br>Curso fue removido!";
             $delete = true;
@@ -111,7 +112,7 @@ Licence URI: http://www.os-templates.com/template-terms
             <th>Course ID</th>
             <th>Créditos</th>
             <th>Sección</th>
-           
+            <th>Editar</th>
             <th>Eliminar curso</th>
           </tr>
         </thead><tbody>';
@@ -127,17 +128,14 @@ Licence URI: http://www.os-templates.com/template-terms
                     echo"<tr class='dark' style='text-align:center'>";
                   
                 
-                print"<tr>
-                    <td>".$row['title']."</td>
+                echo'<tr>
+                    <td>'.$row['title']."</td>
                     <td>".$row['course_id']."</td>
                     <td>".$row['credits']."</td>
-                    <td>".$row['section_id']."</td>
-                    <td><form action='cursos.php' method='post'>
-                    <input type='hidden' name='course_id' value=' ".$row['course_id']." '>
-                    <input title='Eliminar ".$row['course_id']."' style='width: 30px; height: 30px' 
-                    type='image' style='background-color: transparent' name='submit' src='../style/images/trash_can.png' border='0' alt='Submit' />
-                    </form></td>
-                    </tr>";
+                    <td>".$row['section_id'].'</td>
+                    <td><a href="editar_curso.php?course_id='.$row['course_id'].'">Editar</a></td>
+                    <td><a href="eliminar_curso.php?estID='.$row['course_id'].'">eliminar</a></td>
+                    </tr>';
                     
                 
                

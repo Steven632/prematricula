@@ -57,13 +57,14 @@ if (isset($_GET['submit']))// procesar formulario
 {
 	// CRUD usando mysqli con objetos...
     
-    $nombre= $_GET['title'];
-    $course_id= $_GET['course_id'];
-    $creditos= $_GET['credits'];
-    // $section=$_GET['section_id'];
-    // $capacidad= $_GET['capacity'];
-    $query = "INSERT INTO course (title, course_id, credits)
-                		VALUES ('$nombre', '$course_id', $creditos)";
+    // $nombre= $_GET['title'];
+    $course_id= $_POST['course_id'];
+    // $creditos= $_GET['credits'];
+    $section=$_GET['section_id'];
+    $capacidad= $_GET['capacity'];
+    $query =  "INSERT INTO section ( course_id, section_id, capacity) VALUES ( '$course_id', '$section', $capacidad)";
+    // "INSERT INTO course (title, course_id, credits)
+    //             		VALUES ('$nombre', '$course_id', $creditos)";
                       // INSERT INTO section ( course_id, section_id, capacity) VALUES ( '$course_id', '$section', $capacidad)
     
     // echo "<p>Insert query: ".$query."</p>";
@@ -79,22 +80,22 @@ if (isset($_GET['submit']))// procesar formulario
 ?>
 
 <!—Formulario solicitando datos del estudiante de honor -->
-<a href="crear_secciones.php">
-<form id='form1' name='form1' method='get' action='crear_curso.php'></a>
+
+<form id='form1' name='form1' method='get' action='cursos.php'>
   <table width='349' border='0'>
-    <tr>
+    <!-- <tr>
       <td width="200" align='right'>Nombre del curso</td>
       <td width="200" align='left'><input name='title' type='text' required /></td>
     </tr>
     <tr>
       <td align='right'>Código del curso</td>
-      <td align='left'><input name='course_id' type='text' required method='post'/></td>
+      <td align='left'><input name='course_id' type='text' required /></td>
     </tr>
     <tr>
       <td align='right'>Creditos</td>
       <td align='left'><input name='credits' type='text' /></td>
-    </tr>
-    <!-- <tr>
+    </tr> -->
+    <tr>
       <td align='right'>Sección</td>
       <td align='left'><input type="text" name="section_id" required/></td>
     </tr>
@@ -102,9 +103,9 @@ if (isset($_GET['submit']))// procesar formulario
       <td align='right'>Capacidad</td>
       <td align='left'><input type="number" name='capacity' required/></td>
     </tr>
-     -->
+    
     <tr>
-   <td colspan='2' align='center'> <input type='submit' name='submit' class="formbutton" value='Insertar' /> </td>
+      	      <td colspan='2' align='center'><input type='submit' name='submit' class="formbutton" value='Insertar'/></td>
     </tr> 
   </table>
 </form>

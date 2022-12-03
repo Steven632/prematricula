@@ -58,7 +58,7 @@ if (isset($_GET['submit']))// procesar formulario
 	// CRUD usando mysqli con objetos...
     
     // $nombre= $_GET['title'];
-    $course_id= $_POST['course_id'];
+    $course_id= $_GET['course_id'];
     // $creditos= $_GET['credits'];
     $section=$_GET['section_id'];
     $capacidad= $_GET['capacity'];
@@ -72,30 +72,31 @@ if (isset($_GET['submit']))// procesar formulario
     if ($dbc->query($query) === TRUE) 
     {
         	// $last_id = $dbc->insert_id;
-        	print "<h3>El curso ha sido creado con éxito.</h3>";
+        	print "<h3>La sección ha sido creada con éxito.</h3>";
     }
     else
-        	print'<h3 style="color:red;">No se pudo crear el curso. Error: '.$dbc->error.'</h3>';
+        	print'<h3 style="color:red;">No se pudo crear la sección del curso. Error: '.$dbc->error.'</h3>';
 	}
 ?>
 
-<!—Formulario solicitando datos del estudiante de honor -->
 
-<form id='form1' name='form1' method='get' action='cursos.php'>
+
+<form id='form1' name='form1' method='get' action='crear_secciones.php'>
   <table width='349' border='0'>
-    <!-- <tr>
-      <td width="200" align='right'>Nombre del curso</td>
-      <td width="200" align='left'><input name='title' type='text' required /></td>
-    </tr>
+    
     <tr>
-      <td align='right'>Código del curso</td>
-      <td align='left'><input name='course_id' type='text' required /></td>
-    </tr>
-    <tr>
-      <td align='right'>Creditos</td>
-      <td align='left'><input name='credits' type='text' /></td>
-    </tr> -->
-    <tr>
+   <td align='right'> <label for="course_id">Código del curso</label></td>
+			   <td  align='left'> <select class="form-control" id="course_id" name="course_id">
+				  <option value="">---SELECT COURSE ID---</option>
+				  <?php 	
+					$sql = "SELECT * FROM course";
+					$res = mysqli_query($dbc, $sql); 
+					while ($r = mysqli_fetch_assoc($res)) {
+				?>
+					<option value="<?php echo $r['course_id']; ?>"><?php echo $r['course_id']; ?></option>
+				<?php } ?>
+				</select> </td></tr>
+        <tr>
       <td align='right'>Sección</td>
       <td align='left'><input type="text" name="section_id" required/></td>
     </tr>

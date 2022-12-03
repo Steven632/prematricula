@@ -64,7 +64,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ####################################################################################################### -->
 <div style="text-align: center"class="wrapper col1">
     <br>
-    <h1 style="font-size: 48px">Estudiantes</h1>
+    <h1 style="font-size: 48px">Eliminar Curso</h1>
     <br><br>
 </div>
     
@@ -73,7 +73,7 @@ Licence URI: http://www.os-templates.com/template-terms
   <div id="container">
     <div style="float:none; display:block; width:1000px" id="content">
         <?php 
-         if(isset($_GET['course_id']) && is_numeric($_GET['course_id']))
+         if(isset($_POST['course_id']))
       {
 
          

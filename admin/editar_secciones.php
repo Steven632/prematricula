@@ -1,5 +1,8 @@
 <?php
 session_start();
+// echo '<pre>';
+//      print_r($_SESSION);
+//      echo '</pre>';
 ?>
 
 <!DOCTYPE html>
@@ -48,62 +51,78 @@ session_start();
   </div>
 </div>
 <!-- ####################################################################################################### -->
-<?php
-include("../db_info.php");
-
-
-//echo "<p>Conexión exitosa al servidor.</p>";
-if (isset($_GET['submit']))// procesar formulario
-{
-	// CRUD usando mysqli con objetos...
-    
-    $nombre= $_GET['title'];
-    $course_id= $_GET['course_id'];
-    $creditos= $_GET['credits'];
-    // $section=$_GET['section_id'];
-    // $capacidad= $_GET['capacity'];
-    $query = "INSERT INTO course (title, course_id, credits)
-                		VALUES ('$nombre', '$course_id', $creditos)";
-                      // INSERT INTO section ( course_id, section_id, capacity) VALUES ( '$course_id', '$section', $capacidad)
-    
-    // echo "<p>Insert query: ".$query."</p>";
-
-    if ($dbc->query($query) === TRUE) 
-    {
-        	// $last_id = $dbc->insert_id;
-        	print "<h3>El curso ha sido creado con éxito.</h3>";
-    }
-    else
-        	print'<h3 style="color:red;">No se pudo crear el curso. Error: '.$dbc->error.'</h3>';
-	}
-?>
-
-<!—Formulario solicitando datos del estudiante de honor -->
 <div class="wrapper col1">
-<a href="crear_secciones.php">
-<form id='form1' name='form1' method='get' action='crear_curso.php'></a>
-  <table width='349' border='0'>
-    <tr>
-      <td width="200" align='right'>Nombre del curso</td>
-      <td width="200" align='left'><input name='title' type='text' required /></td>
-    </tr>
-    <tr>
-      <td align='right'>Código del curso</td>
-      <td align='left'><input name='course_id' type='text' required /></td>
-    </tr>
-    <tr>
-      <td align='right'>Creditos</td>
-      <td align='left'><input name='credits' type='text' required /></td>
-    </tr>
-   
-    <tr>
-   <td colspan='2' align='center'> <input type='submit' name='submit' class="formbutton" value='Insertar' /> </td>
-    </tr> 
-  </table>
+<?php
+	include("../db_info.php");
+  
+
+	//echo "<p>Conexión exitosa al servidor.</p>";
+	if(isset($_GET['course_id'])) //viene del index.php
+	{
+    $course_id= $_GET['course_id'];
+ 		$query = "SELECT * FROM section WHERE course_id= '$course_id'";
+ 		echo "<p>Query para seleccionar curso del récord a editar: ".$query."</p>";
+
+if($result = $dbc->query($query))
+{
+if ($result->num_rows==1)
+{	
+  	$row = $result->fetch_assoc();
+	//mostrar datos en formulario
+ print '<div>
+ 
+ <form action="editar_secciones.php" method="post">
+ <table border=0>
+ <tr>
+  <td>Sección: </td><td>
+  <input type="text" name="section_id" id="section_id" value="' .$row['section_id'].'" /></td>
+ </tr> 
+ <tr>
+  <td>Capacidad: </td><td>
+  <input type="tinyint" name="capacity" value="' .$row['capacity'].'" /></td>
+ <tr>
+ 
+	<td><input type="submit" name="Editar" id="Editar" class="formbutton" value="Editar" /></td>
+ </tr>
+</table>
 </form>
-<h3><a href="crear_secciones.php"> Crear Secciones </a></h3>
-</div>
-</div>
+</div>'; 
+						}
+						else
+ print '<h3 style="color:red;">No se pudo traer la información del estudiante. Error:<br />' . $dbc->error . '</h3>';
+					}  
+	else
+          	print'<h3 style="color:red;">Error en el query: '.$dbc->error.'</h3>';
+}
+else if(isset($_POST['course_id']))//formulario sometido
+{
+ $section_id = $_POST['section_id'];
+//  $course_id = $_POST['course_id'];
+ $capacity = $_POST['capacity'];
+ 
+ 
+ include("../db_info.php");
+ //echo "<p>Conexión exitosa al servidor.</p>";
+ 
+	$query = "UPDATE section 
+	SET	section_id='$section_id',  
+	capacity='$capacity'
+  WHERE course_id='$course_id'";
+ //echo "<p>update query: ".$query."</p>";
+ 
+ if ($dbc->query($query) === TRUE)
+  	print '<h3>El estudiante ha sido actualizado exitosamente</h3>';
+ else
+  	print '<h3 style="color:red;">No se pudo actualizar el estudiante porque:<br />'.$dbc->error.'</h3>';
+}
+else
+ 	print '<h3 style="color:red;">Esta página ha sido accedida con error</h3>';	 	
+
+$dbc->close();
+?>
+<h3><a href="cursos.php"> Ver cursos</a></h3>
+	</div>
+  </div>
 <div class="wrapper col1"><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 <!-- ####################################################################################################### -->
 

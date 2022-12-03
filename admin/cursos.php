@@ -112,7 +112,10 @@ Licence URI: http://www.os-templates.com/template-terms
             <th>Course ID</th>
             <th>Créditos</th>
             <th>Sección</th>
-            <th>Editar</th>
+            <th>Capacidad</th>
+            <th>Disponible</th>
+            <th>Editar curso</th>
+            <th>Editar secciones</th>
             <th>Eliminar curso</th>
           </tr>
         </thead><tbody>';
@@ -132,8 +135,11 @@ Licence URI: http://www.os-templates.com/template-terms
                     <td>'.$row['title']."</td>
                     <td>".$row['course_id']."</td>
                     <td>".$row['credits']."</td>
-                    <td>".$row['section_id'].'</td>
-                    <td><a href="editar_curso.php?course_id='.$row['course_id'].'">Editar</a></td>
+                    <td>".$row['section_id']."</td>
+                    <td>".$row['capacity']."</td>
+                    <td>".$row['availble'].'</td>
+                    <td><a href="editar_curso.php?course_id='.$row['course_id'].'">Editar curso</a></td>
+                    <td><a href="editar_secciones.php?course_id='.$row['course_id'].'">Editar Secciones</a></td>
                     <td><a href="eliminar_curso.php?course_id='.$row['course_id'].'">Eliminar</a></td>
                     </tr>';
                     
@@ -147,8 +153,9 @@ Licence URI: http://www.os-templates.com/template-terms
         echo"</table";
 
         ?>
+        <div class="wrapper col1">
        <h1><a href="crear_curso.php">Crear curso nuevo</a></h1>
-     
+       </div>
       
    
       

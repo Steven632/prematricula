@@ -122,10 +122,10 @@ Licence URI: http://www.os-templates.com/template-terms
       else
        print'<h3 style="color:red;">Error en el query: '.$dbc->error.'</h3>';
     }
-    elseif(isset($_POST['course_id']) && is_numeric($_POST['course_id']))
+    elseif(isset($_POST['course_id']) )
     {
      //borrar est confirmado
-     $query = "DELETE FROM course WHERE course_id={$_POST['course_id']} LIMIT 1";
+     $query = "DELETE FROM course WHERE course_id={$_POST['$course_id']} LIMIT 1";
      if ($dbc->query($query) === TRUE) 
        echo '<h3>El curso ha sido eliminado con éxito. </h3>';
      else 

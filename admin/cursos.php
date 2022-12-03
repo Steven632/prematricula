@@ -134,7 +134,7 @@ Licence URI: http://www.os-templates.com/template-terms
                     <td>".$row['credits']."</td>
                     <td>".$row['section_id'].'</td>
                     <td><a href="editar_curso.php?course_id='.$row['course_id'].'">Editar</a></td>
-                    <td><a href="eliminar_curso.php?estID='.$row['course_id'].'">eliminar</a></td>
+                    <td><a href="eliminar_curso.php?course_id='.$row['course_id'].'">Eliminar</a></td>
                     </tr>';
                     
                 

@@ -88,27 +88,20 @@ if (isset($_GET['submit']))// procesar formulario
     </tr>
     <tr>
       <td align='right'>Código del curso</td>
-      <td align='left'><input name='course_id' type='text' required method='post'/></td>
+      <td align='left'><input name='course_id' type='text' required /></td>
     </tr>
     <tr>
       <td align='right'>Creditos</td>
-      <td align='left'><input name='credits' type='text' /></td>
+      <td align='left'><input name='credits' type='text' required /></td>
     </tr>
-    <!-- <tr>
-      <td align='right'>Sección</td>
-      <td align='left'><input type="text" name="section_id" required/></td>
-    </tr>
-    <tr>
-      <td align='right'>Capacidad</td>
-      <td align='left'><input type="number" name='capacity' required/></td>
-    </tr>
-     -->
+   
     <tr>
    <td colspan='2' align='center'> <input type='submit' name='submit' class="formbutton" value='Insertar' /> </td>
     </tr> 
   </table>
 </form>
-<h3><a href="cursos.php"> Ver cursos </a></h3>
+<h3><a href="crear_secciones.php"> Crear Secciones </a></h3>
+
 </div>
 <div class="wrapper col1"><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 <!-- ####################################################################################################### -->

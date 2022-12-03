@@ -61,34 +61,13 @@ Licence URI: http://www.os-templates.com/template-terms
     <br>
     
 <?php
-    if(isset($_GET['name']))
+    if(isset($_GET['course']) && isset($_GET['section']))
     {
+        $course = $_GET['course'];
+        $section = $_GET['section'];
         
-        $queryCheck = "SELECT * FROM checker LIMIT 1";
-            if($resultc = $dbc->query($queryCheck))
-            {
-                while($rowc = $resultc->fetch_assoc())
-                {
-                    $checker = $rowc['bool'];
-                }
-
-                if($checker == 0)
-                    $prefix = "Pre-m";
-                else
-                    $prefix = "M";
-            }
-        
-        
-        $name = $_GET['name'];
-        $query = "SELECT * FROM student
-        WHERE name = '$name'";
-         if($result = $dbc->query($query))
-        {
-            while($row = $result->fetch_assoc())
-            {
-                echo'<h1 style="font-size: 48px">'.$prefix.'atrícula de '.$row['name'].'</h1>';
-            }
-        }
+        echo"<h1 style='font-size: 48px'>Matrícula de $course-$section</h1>";
+            
     }
     
 ?>
@@ -100,52 +79,61 @@ Licence URI: http://www.os-templates.com/template-terms
     <div style="float:none; display:block; width:1000px" id="content">
         
 <?php 
-       
-       $query2 = "SELECT * FROM enrollment JOIN student
-                    WHERE enrollment.student_id = student.student_id
-                    AND name = '$name'";
-                    
-        $rowColor = 0;
-        echo'<table style="text-aling:center" cellpadding="0" cellspacing="0">
-        <thead>
-          <tr>
-            <th>Curso</th>
-            <th>Sección</th>
-            <th>Status</th>
-            <th>Timestamp</th>
-          </tr>
-        </thead><tbody>';
-        
-        if($result2 = $dbc->query($query2))
+       if(isset($_GET['course']) && isset($_GET['section']))
         {
-            while($row2 = $result2->fetch_assoc())
+            $course = $_GET['course'];
+            $section = $_GET['section'];
+           
+           $query2 = "SELECT * FROM enrollment JOIN student
+            WHERE enrollment.student_id = student.student_id
+            AND course_id = '$course'
+            AND section_id = '$section'
+            ORDER BY year_of_study DESC, timestamp ASC";
+
+            $rowColor = 0;
+            echo'<table style="text-aling:center" cellpadding="0" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Número de Estudiante</th>
+                <th>Año de Estudio</th>
+                <th>Status</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead><tbody>';
+
+            if($result2 = $dbc->query($query2))
             {
-                if($rowColor % 2 == 0)
-                    echo"<tr class='light' style='text-align:center'>";
-                   
-                else
-                    echo"<tr class='dark' style='text-align:center'>";
-                  
-                
-                echo"<td>".$row2['course_id']."</td>
-                    <td>".$row2['section_id']."</td>";
-                
-                if($row2['status'] == 0)
-                    echo"<td>Pendiente</td>";
-                else if($row2['status'] == 1)
-                    echo"<td>Matriculado</td>";
-                else if($row2['status'] == 2)
-                    echo"<td>Cancelado por cupo</td>";
-                    
-                echo "<td>".$row2['timestamp']."</td>";
-                
-               
-                
-                $rowColor++;
+                while($row2 = $result2->fetch_assoc())
+                {
+                    if($rowColor % 2 == 0)
+                        echo"<tr class='light' style='text-align:center'>";
+
+                    else
+                        echo"<tr class='dark' style='text-align:center'>";
+
+
+                    echo"<td>".$row2['name']."</td>
+                        <td>".$row2['student_id']."</td>
+                        <td>".$row2['year_of_study']."</td>";
+
+                    if($row2['status'] == 0)
+                        echo"<td>Pendiente</td>";
+                    else if($row2['status'] == 1)
+                        echo"<td>Matriculado</td>";
+                    else if($row2['status'] == 2)
+                        echo"<td>Cancelado por cupo</td>";
+
+                    echo "<td>".$row2['timestamp']."</td>";
+
+
+
+                    $rowColor++;
+                }
             }
-        }
-        
-        echo"</table";
+
+            echo"</table";
+       }
 
 ?>
       

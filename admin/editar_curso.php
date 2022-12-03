@@ -51,14 +51,16 @@ session_start();
   </div>
 </div>
 <!-- ####################################################################################################### -->
+<div class="wrapper col1">
 <?php
 	include("../db_info.php");
-
+  
 
 	//echo "<p>Conexión exitosa al servidor.</p>";
 	if(isset($_GET['course_id'])) //viene del index.php
 	{
- 		$query = "SELECT * FROM course WHERE course_id={$_GET["course_id"]}";
+    $course_id= $_GET['course_id'];
+ 		$query = "SELECT * FROM course WHERE course_id= '$course_id'";
  		echo "<p>Query para seleccionar curso del récord a editar: ".$query."</p>";
 
 if($result = $dbc->query($query))
@@ -85,27 +87,10 @@ if ($result->num_rows==1)
   	<input type="text" name="credits" value="' .$row['credits'].'" /></td>
 </tr>
 
-<tr>
-  	<td>Curso: </td><td>
-  	<select name="course_id" >';
 
-	$query2 ="SELECT * FROM departamento JOIN section";
-  echo "<p>Query para seleccionar curso del récord a editar: ".$query2."</p>";
-	$result2 = $dbc->query($query2);
-	while($row2 = $result2->fetch_assoc())
-	{
-		print "<option value=".$row2['course_id'];
-		if($row2['course_id']==$row['course_id']) 
-			print" selected >";
-		else 
-			print ">";
-		print $row2['course_id']."</option>";
-	}
-	print '</select></td>
-</tr>
-  	<td>Sección: </td><td>
-  	<input type="text" name="section_id" value="'. $row['section_id'].'" /></td>
-</tr>
+
+
+
  <tr>
  
 	<td><input type="submit" name="Editar" id="Editar" class="formbutton" value="Editar" /></td>
@@ -120,26 +105,21 @@ if ($result->num_rows==1)
 	else
           	print'<h3 style="color:red;">Error en el query: '.$dbc->error.'</h3>';
 }
-else if(isset($_POST["course_id"]))//formulario sometido
+else if(isset($_POST['course_id']))//formulario sometido
 {
  $titulo = $_POST['title'];
  $course_id = $_POST['course_id'];
  $credits = $_POST['credits'];
-//  $email = $_POST['email'];
- $section_id = $_POST['section_id'];
-//  $prom = $_POST['promedio']; 
  
- include("../dbinfo.php");
+ 
+ include("../db_info.php");
  //echo "<p>Conexión exitosa al servidor.</p>";
  
-	$query = "UPDATE course JOIN section 
+	$query = "UPDATE course 
 	SET	title='$titulo', 
-	course_id='$course_id', 
-	credits='$credits', 
-	section_id='$section_id', 
-	-- promedio=$prom, 
-	-- deptoID=$departamento
-	WHERE course_id={$_POST["course_id"]}";
+	-- course_id='$course_id', 
+	credits='$credits'
+  WHERE course_id='$course_id'";
  //echo "<p>update query: ".$query."</p>";
  
  if ($dbc->query($query) === TRUE)
@@ -154,6 +134,7 @@ $dbc->close();
 ?>
 <h3><a href="cursos.php"> Ver cursos</a></h3>
 	</div>
+  </div>
 <div class="wrapper col1"><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 <!-- ####################################################################################################### -->
 

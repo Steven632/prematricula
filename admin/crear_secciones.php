@@ -80,7 +80,7 @@ if (isset($_GET['submit']))// procesar formulario
 ?>
 
 
-
+<div class="wrapper col1">
 <form id='form1' name='form1' method='get' action='crear_secciones.php'>
   <table width='349' border='0'>
     
@@ -111,6 +111,7 @@ if (isset($_GET['submit']))// procesar formulario
   </table>
 </form>
 <h3><a href="cursos.php"> Ver cursos </a></h3>
+</div>
 </div>
 <div class="wrapper col1"><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 <!-- ####################################################################################################### -->

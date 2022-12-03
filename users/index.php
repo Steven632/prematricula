@@ -209,7 +209,7 @@ Licence URI: http://www.os-templates.com/template-terms
                                       </div>
                                     </div>
                                        <div id="featured_slide" class="flex-child">
-                                  <h1>'.$row['course_id'].'</h1>
+                                  <div class="Y"><h1>'.$row['course_id'].'</h1></div>
                                 <div id="featured_wrap">
                                     <ul id="featured_tabs">
                                     <form>';
@@ -228,7 +228,7 @@ Licence URI: http://www.os-templates.com/template-terms
                                       </div>
                                     </div>
                                        <div id="featured_slide" class="flex-child">
-                                  <h1>'.$row['course_id'].'</h1>
+                                  <div class="Y"><h1>'.$row['course_id'].'</h1></div>
                                 <div id="featured_wrap">
                                     <ul id="featured_tabs">
                                     <form id="form'.$formid.'" action="index.php" method="POST">';
@@ -255,7 +255,7 @@ Licence URI: http://www.os-templates.com/template-terms
                         if($check == true)
                         {
                             echo' <div id="featured_slide" class="flex-child">
-                              <h1>'.$row['course_id'].'</h1>
+                              <div><h1>'.$row['course_id'].'</h1></div>
                             <div id="featured_wrap">
                                 <ul id="featured_tabs">
                                 <form>';
@@ -273,7 +273,7 @@ Licence URI: http://www.os-templates.com/template-terms
                         {
 
                         echo' <div id="featured_slide" class="flex-child">
-                              <h1>'.$row['course_id'].'</h1>
+                              <div class="Y"><h1>'.$row['course_id'].'</h1></div>
                             <div id="featured_wrap">
                                 <ul id="featured_tabs">
                                 <form id="form'.$formid.'" action="index.php" method="POST">';

@@ -171,3 +171,8 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 
 #copyright{padding:15px 0;}
 #copyright p{margin:0; padding:0;}
+
+.Y{
+    width: 280px;
+    text-align: center;
+}

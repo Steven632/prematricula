@@ -57,72 +57,84 @@ session_start();
   
 
 	//echo "<p>Conexión exitosa al servidor.</p>";
-	if(isset($_GET['course_id'])) //viene del index.php
+	if(isset($_GET['course_id']) || isset($_POST['course_id'])) //viene del index.php
 	{
-    $course_id= $_GET['course_id'];
- 		$query = "SELECT * FROM section WHERE course_id= '$course_id'";
- 		echo "<p>Query para seleccionar curso del récord a editar: ".$query."</p>";
+        if(isset($_POST['course_id']))
+        {
+            echo'<div style="text-align: center"class="wrapper col1">
+                <br>
+                <h1 style="font-size: 48px">Secciones de '.$_POST['course_id'].'</h1>
+                <br><br>
+            </div>';
+            
+             $section_id = $_POST['section_id'];
+            //  $course_id = $_POST['course_id'];
+             $capacity = $_POST['capacity'];
+            $course_id = $_POST['course_id'];
 
-if($result = $dbc->query($query))
-{
-if ($result->num_rows==1)
-{	
-  	$row = $result->fetch_assoc();
-	//mostrar datos en formulario
- print '<div>
- 
- <form action="editar_secciones.php" method="post">
- <table border=0>
- <tr>
-  <td>Sección: </td><td>
-  <input type="text" name="section_id" id="section_id" value="' .$row['section_id'].'" /></td>
- </tr> 
- <tr>
-  <td>Capacidad: </td><td>
-  <input type="tinyint" name="capacity" value="' .$row['capacity'].'" /></td>
- <tr>
- 
-	<td><input type="submit" name="Editar" id="Editar" class="formbutton" value="Editar" /></td>
- </tr>
-</table>
-</form>
-</div>'; 
-						}
-						else
- print '<h3 style="color:red;">No se pudo traer la información del estudiante. Error:<br />' . $dbc->error . '</h3>';
-					}  
-	else
-          	print'<h3 style="color:red;">Error en el query: '.$dbc->error.'</h3>';
-}
-else if(isset($_POST['course_id']))//formulario sometido
-{
- $section_id = $_POST['section_id'];
-//  $course_id = $_POST['course_id'];
- $capacity = $_POST['capacity'];
- 
- 
- include("../db_info.php");
- //echo "<p>Conexión exitosa al servidor.</p>";
- 
-	$query = "UPDATE section 
-	SET	section_id='$section_id',  
-	capacity='$capacity'
-  WHERE course_id='$course_id'";
- //echo "<p>update query: ".$query."</p>";
- 
- if ($dbc->query($query) === TRUE)
-  	print '<h3>El estudiante ha sido actualizado exitosamente</h3>';
- else
-  	print '<h3 style="color:red;">No se pudo actualizar el estudiante porque:<br />'.$dbc->error.'</h3>';
-}
-else
- 	print '<h3 style="color:red;">Esta página ha sido accedida con error</h3>';	 	
+
+             include("../db_info.php");
+             //echo "<p>Conexión exitosa al servidor.</p>";
+
+                $query1 = "UPDATE section 
+                SET	section_id='$section_id',  
+                capacity=$capacity
+              WHERE course_id='$course_id'";
+             //echo "<p>update query: ".$query1."</p>";
+
+             if ($dbc->query($query1) === TRUE)
+                print '<h3>La sección ha sido actualizada exitosamente</h3>';
+             else
+                print '<h3 style="color:red;">No se pudo actualizar la sección porque:<br />'.$dbc->error.'</h3>';
+            
+            $query = "SELECT * FROM section WHERE course_id= '$course_id'";
+            //echo "<p>Query para seleccionar curso del récord a editar: ".$query."</p>";   
+        }
+        else
+        {
+             echo'<div style="text-align: center"class="wrapper col1">
+                <br>
+                <h1 style="font-size: 48px">Secciones de '.$_GET['course_id'].'</h1>
+                <br><br>
+            </div>';
+            $course_id= $_GET['course_id'];
+            $query = "SELECT * FROM section WHERE course_id= '$course_id'";
+            //echo "<p>Query para seleccionar curso del récord a editar: ".$query."</p>";   
+        }
+
+        if($result = $dbc->query($query))
+        {	
+                 while($row = $result->fetch_assoc())
+                //mostrar datos en formulario
+                 print '<div>
+
+                 <form action="editar_secciones.php" method="post">
+                 <table border=0>
+                 <tr>
+                  <td>Sección: </td><td>
+                  <input type="text" name="section_id" id="section_id" value="' .$row['section_id'].'" /></td>
+                 </tr> 
+                 <tr>
+                  <td>Capacidad: </td><td>
+                  <input type="tinyint" name="capacity" value="' .$row['capacity'].'" /></td>
+                 <tr>
+                 <input type="hidden" name="course_id" value="'. $course_id .'" />
+                    <td><input type="submit" name="Editar" id="Editar" class="formbutton" value="Editar" /></td>
+                 </tr>
+                </table>
+                </form>
+                </div>'; 
+        }  
+        else
+            print'<h3 style="color:red;">Error en el query: '.$dbc->error.'</h3>';
+    }
+   
 
 $dbc->close();
 ?>
+    
 <h3><a href="cursos.php"> Ver cursos</a></h3>
 	</div>
-  </div>
 <div class="wrapper col1"><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 <!-- ####################################################################################################### -->
 

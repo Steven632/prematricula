@@ -2,9 +2,9 @@
 
     session_start();
      include("../db_info.php");
-     echo '<pre>';
-     print_r($_SESSION);
-     echo '</pre>';
+//     echo '<pre>';
+//     print_r($_SESSION);
+//     echo '</pre>';
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -44,14 +44,12 @@ Licence URI: http://www.os-templates.com/template-terms
 <div class="wrapper col2">
   <div id="topnav">
     <ul>
-      <li class="active"><a href="eliminar_curso.php">Cursos</a>
-      <li><a href="cursos.php">Cursos</a>
-      <li><a href="estuiantes.php">Ver Estudiantes</a>
+      <li class="active"><a href="cursos.php">Cursos</a>
+      <li><a href="estudiantes.php">Ver Estudiantes</a>
           <ul style="height: 100px">
         </ul>
       </li>
-        <li>
-        <a href="prematricula.php">Informe Matrícula</a>
+    <li><a href="prematricula.php">Informe Matrícula</a>
           <ul style="height: 100px">
         </ul>
       </li>
@@ -69,80 +67,76 @@ Licence URI: http://www.os-templates.com/template-terms
 </div>
     
     
-    <div class="wrapper col3 style='display: flex; align-content: center">
+        <div class="wrapper col3 style='display: flex; align-content: center">
   <div id="container">
     <div style="float:none; display:block; width:1000px" id="content">
         <?php 
-         if(isset($_POST['course_id']))
-      {
+         if(isset($_GET['course_id']))
+          {
+                $course_id = $_GET['course_id'];
 
-         
-       $query = "SELECT * FROM course";
-        if($result->num_rows==1)
-        {
-          $row = $result->fetch_assoc();      
-        $rowColor = 0;
-        echo'<table style="text-aling:center" cellpadding="0" cellspacing="0">
-        <thead>
-          <tr>
-            <th>Curso</th>
-            <th>Course ID</th>
-            <th>Créditos</th>
-          </tr>
-        </thead><tbody>';
-        
-        if($result = $dbc->query($query))
-        {
-            while($row = $result->fetch_assoc())
-            {
-                if($rowColor % 2 == 0)
-                    echo"<tr class='light' style='text-align:center'>";
-                   
-                else
-                    echo"<tr class='dark' style='text-align:center'>";
-                  
-                
-                echo"<td>".$row['title']."</td>
-                    <td>".$row['course_id']."</td>
-                    <td>".$row['credits']."</td>";
-                    
-                    
-                
-               
-                
-                $rowColor++;
+               $query = "SELECT * FROM course WHERE course_id = '$course_id'";
+
+                 echo'<table style="text-aling:center" cellpadding="0" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Curso</th>
+                            <th>Course ID</th>
+                            <th>Créditos</th>
+                          </tr>
+                        </thead><tbody>';
+                if($result = $dbc->query($query))
+                {
+                        $rowColor = 0;
+                        while($row = $result->fetch_assoc())
+                        {
+                            if($rowColor % 2 == 0)
+                                echo"<tr class='light' style='text-align:center'>";
+                            else
+                                echo"<tr class='dark' style='text-align:center'>";
+
+
+                            echo"<td>".$row['title']."</td>
+                                <td>".$row['course_id']."</td>
+                                <td>".$row['credits']."</td>";
+
+                            $rowColor++;
+
+                        }
+                        echo"</tbody></table";
+                  }
+             
+                  else
+                    print'<h3 style="color:red;">Error, el curso no se encontró en la tabla</h3>';
+
+
+              echo'<div class="wrapper col1"><h3><a href="eliminar_curso.php?del='.$course_id.'"> Borrar? </a></h3></div>';
+             
+             $dbc->close();
+            }
             
-        }
+            elseif(isset($_GET['del']) )
+            {
+                 //borrar est confirmado
+                $course = $_GET['del'];
+                 $query = "DELETE FROM course WHERE course_id='$course' LIMIT 1";
+                 if ($dbc->query($query) === TRUE) 
+                   echo '<h3>El curso ha sido eliminado con éxito. </h3>';
+                 else 
+                   print '<h3 style="color:red;">No se pudo eliminar el curso porque:<br />' . $dbc->error. '</h3>';
+                
+                $dbc->close();
+             } 
+             else
+                    print '<h3 style="color:red;">Esta página ha sido accedida con error</h3>';
+            
+            ?>
         
-        echo"</table";
-      }
-      else
-        print'<h3 style="color:red;">Error, el curso no se encontró en la tabla</h3>';
-      }
-      else
-       print'<h3 style="color:red;">Error en el query: '.$dbc->error.'</h3>';
-    }
-    elseif(isset($_POST['course_id']) )
-    {
-     //borrar est confirmado
-     $query = "DELETE FROM course WHERE course_id={$_POST['$course_id']} LIMIT 1";
-     if ($dbc->query($query) === TRUE) 
-       echo '<h3>El curso ha sido eliminado con éxito. </h3>';
-     else 
-       print '<h3 style="color:red;">No se pudo eliminar el curso porque:<br />' . $dbc->error. '</h3>';
-     } 
-     else
-       print '<h3 style="color:red;">Esta página ha sido accedida con error</h3>';
-     $dbc->close();
-    ?>
-    <h3><a href="cursos.php"> Ver cursos </a></h3>
+            <div class="wrapper col1">
+            <h3><a href="cursos.php"> Ver cursos </a></h3>
+        </div> 
 
         
-
-     
-      
-   
-      
       </div>
   </div>
 </div>
@@ -184,6 +178,6 @@ Licence URI: http://www.os-templates.com/template-terms
   </div>
 </div>
 <!-- ####################################################################################################### -->
-=
+
 </body>
 </html>

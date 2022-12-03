@@ -59,9 +59,15 @@ session_start();
 	//echo "<p>Conexión exitosa al servidor.</p>";
 	if(isset($_GET['course_id'])) //viene del index.php
 	{
+        
+        echo'<div style="text-align: center"class="wrapper col1">
+                <br>
+                <h1 style="font-size: 48px">Información de '.$_GET['course_id'].'</h1>
+                <br><br>
+            </div>';
     $course_id= $_GET['course_id'];
  		$query = "SELECT * FROM course WHERE course_id= '$course_id'";
- 		echo "<p>Query para seleccionar curso del récord a editar: ".$query."</p>";
+ 		//echo "<p>Query para seleccionar curso del récord a editar: ".$query."</p>";
 
 if($result = $dbc->query($query))
 {
@@ -75,17 +81,19 @@ if ($result->num_rows==1)
  <table border=0>
  <tr>
   <td>Titulo del curso: </td><td>
-  <input type="text" name="titulo" id="titulo" value="' .$row['title'].'" /></td>
+  <input type="text" name="new_title" value="' .$row['title'].'" /></td>
  </tr> 
  <tr>
   <td>Código: </td><td>
-  <input type="text" name="course_id" value="' .$row['course_id'].'" /></td>
+  <input type="text" name="new_id" value="' .$row['course_id'].'" /></td>
  
  
 </tr>
  	<td>Créditos: </td><td>
-  	<input type="text" name="credits" value="' .$row['credits'].'" /></td>
+  	<input type="number" name="new_creds" value="' .$row['credits'].'" /></td>
 </tr>
+
+<input type="hidden" name="old_id" value="' .$row['course_id'].'" />
 
 
 
@@ -105,27 +113,28 @@ if ($result->num_rows==1)
 	else
           	print'<h3 style="color:red;">Error en el query: '.$dbc->error.'</h3>';
 }
-else if(isset($_POST['course_id']))//formulario sometido
+else if(isset($_POST['Editar']))//formulario sometido
 {
- $titulo = $_POST['title'];
- $course_id = $_POST['course_id'];
- $credits = $_POST['credits'];
+ $title = $_POST['new_title'];
+ $new_id = $_POST['new_id'];
+ $credits = $_POST['new_creds'];
+ $old_id = $_POST['old_id'];
  
  
  include("../db_info.php");
  //echo "<p>Conexión exitosa al servidor.</p>";
  
 	$query = "UPDATE course 
-	SET	title='$titulo', 
-	-- course_id='$course_id', 
-	credits='$credits'
-  WHERE course_id='$course_id'";
+	SET	title = '$title', 
+	course_id = '$new_id', 
+	credits = $credits
+    WHERE course_id = '$old_id';";
  //echo "<p>update query: ".$query."</p>";
  
  if ($dbc->query($query) === TRUE)
-  	print '<h3>El estudiante ha sido actualizado exitosamente</h3>';
+  	print '<h3>El curso ha sido actualizado exitosamente</h3>';
  else
-  	print '<h3 style="color:red;">No se pudo actualizar el estudiante porque:<br />'.$dbc->error.'</h3>';
+  	print '<h3 style="color:red;">No se pudo actualizar el curso porque:<br />'.$dbc->error.'</h3>';
 }
 else
  	print '<h3 style="color:red;">Esta página ha sido accedida con error</h3>';	 	
@@ -134,7 +143,6 @@ $dbc->close();
 ?>
 <h3><a href="cursos.php"> Ver cursos</a></h3>
 	</div>
-  </div>
 <div class="wrapper col1"><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 <!-- ####################################################################################################### -->
 

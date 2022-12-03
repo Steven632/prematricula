@@ -92,7 +92,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ####################################################################################################### -->
 <div style="text-align: center"class="wrapper col1">
     <br>
-    <h1 style="font-size: 48px">Estudiantes</h1>
+    <h1 style="font-size: 48px">Cursos</h1>
     <br><br>
 </div>
     
@@ -102,7 +102,7 @@ Licence URI: http://www.os-templates.com/template-terms
     <div style="float:none; display:block; width:1000px" id="content">
         <?php 
        
-       $query = "SELECT * FROM course JOIN section WHERE course.course_id=section.course_id";
+       $query = "SELECT * FROM course";
                     
         $rowColor = 0;
         echo'<table style="text-aling:center" cellpadding="0" cellspacing="0">
@@ -111,9 +111,6 @@ Licence URI: http://www.os-templates.com/template-terms
             <th>Curso</th>
             <th>Course ID</th>
             <th>Créditos</th>
-            <th>Sección</th>
-            <th>Capacidad</th>
-            <th>Disponible</th>
             <th>Editar curso</th>
             <th>Editar secciones</th>
             <th>Eliminar curso</th>
@@ -132,12 +129,9 @@ Licence URI: http://www.os-templates.com/template-terms
                   
                 
                 echo'<tr>
-                    <td>'.$row['title']."</td>
-                    <td>".$row['course_id']."</td>
-                    <td>".$row['credits']."</td>
-                    <td>".$row['section_id']."</td>
-                    <td>".$row['capacity']."</td>
-                    <td>".$row['availble'].'</td>
+                    <td>'.$row["title"].'</td>
+                    <td>'.$row["course_id"].'</td>
+                    <td>'.$row["credits"].'</td>
                     <td><a href="editar_curso.php?course_id='.$row['course_id'].'">Editar curso</a></td>
                     <td><a href="editar_secciones.php?course_id='.$row['course_id'].'">Editar Secciones</a></td>
                     <td><a href="eliminar_curso.php?course_id='.$row['course_id'].'">Eliminar</a></td>

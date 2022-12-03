@@ -8,7 +8,7 @@ Licence URI: http://www.os-templates.com/template-terms
 File: Featured Slider CSS
 */
 
-#featured_slide{position:relative; width:20%; margin:0 auto; padding:10px 0 0 0;}
+#featured_slide{position:relative; width:20%;  padding:10px 0 0 0;}
 #featured_slide #featured_wrap{position:relative; width:320px; height:250px; padding:10px; overflow:hidden; color:#333333; background-color:none;}
 #featured_slide a{color:#CCCCCC; background-color:transparent;}
 #featured_slide a, #featured_slide ul, #featured_slide img{margin:0; padding:0; border:none; outline:none; list-style:none; text-decoration:none;}

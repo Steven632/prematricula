@@ -57,8 +57,10 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 }
 
 .flex-container{
-    display: flex;
-    flex-wrap: wrap;
+    display:grid;
+    width: 1030px;
+    margin: 0px auto 0px auto;
+    grid-template-columns: auto auto auto;
 }
 
 .flex-child{

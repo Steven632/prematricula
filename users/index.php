@@ -116,6 +116,7 @@ Licence URI: http://www.os-templates.com/template-terms
     <br><br>
 </div>
     
+<div class="back">
 <div class="col4 flex-container">    
     
      <?php
@@ -299,6 +300,7 @@ Licence URI: http://www.os-templates.com/template-terms
 
             ?>
     
+</div>
 </div>
     
     <div class="wrapper col1"><br><br><br></div>

@@ -94,44 +94,60 @@ Licence URI: http://www.os-templates.com/template-terms
   <div id="container">
     <div style="float:none; display:block; width:1000px" id="content">
         <?php 
-       
-       $query = "SELECT name, year_of_study,
-                CONCAT (LEFT(student_id,3),'-',MID(student_id,4,2),'-',RIGHT(student_id,4)) AS student_id
-                    FROM student
-                    WHERE year_of_study !=0";
-                    
-        $rowColor = 0;
-        echo'<table style="text-aling:center" cellpadding="0" cellspacing="0">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Número de Estudiante</th>
-            <th>Año de Estudio</th>
-          </tr>
-        </thead><tbody>';
         
-        if($result = $dbc->query($query))
-        {
-            while($row = $result->fetch_assoc())
+            $queryCheck = "SELECT * FROM checker LIMIT 1";
+            if($resultc = $dbc->query($queryCheck))
             {
-                if($rowColor % 2 == 0)
-                    echo"<tr class='light' style='text-align:center'>";
-                   
+                while($rowc = $resultc->fetch_assoc())
+                {
+                    $checker = $rowc['bool'];
+                }
+
+                if($checker == 0)
+                    $prefix = "Pre-m";
                 else
-                    echo"<tr class='dark' style='text-align:center'>";
-                  
-                
-                echo"<td><a title='Ver pre-matrícula' class='student_link' href='cursos_de_estudiante.php?name=".$row['name']."'>".$row['name']."</a></td>
-                    <td>".$row['student_id']."</td>
-                    <td>".$row['year_of_study']."</td>";
-                
-               
-                
-                $rowColor++;
+                    $prefix = "M";
             }
-        }
-        
-        echo"</table";
+
+           $query = "SELECT name, year_of_study,
+                    CONCAT (LEFT(student_id,3),'-',MID(student_id,4,2),'-',RIGHT(student_id,4)) AS student_id
+                        FROM student
+                        WHERE year_of_study !=0
+                        ORDER BY year_of_study DESC";
+
+            $rowColor = 0;
+            echo'<table style="text-aling:center" cellpadding="0" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Número de Estudiante</th>
+                <th>Año de Estudio</th>
+                <th>Ver '.$prefix.'atrícula</th>
+              </tr>
+            </thead><tbody>';
+
+            if($result = $dbc->query($query))
+            {
+                while($row = $result->fetch_assoc())
+                {
+                    if($rowColor % 2 == 0)
+                        echo"<tr class='light' style='text-align:center'>";
+
+                    else
+                        echo"<tr class='dark' style='text-align:center'>";
+
+
+                    echo"<td>".$row['name']."</td>
+                        <td>".$row['student_id']."</td>
+                        <td>".$row['year_of_study']."</td>
+                        <td><a title='Ir a ".$prefix."atrícula' class='student_link' href='cursos_de_estudiante.php?name=".$row['name']."'>".$prefix."atrícula</a></td>";
+
+
+                    $rowColor++;
+                }
+            }
+
+            echo"</table";
 
         ?>
 

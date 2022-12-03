@@ -6,7 +6,6 @@
     
     if(isset($_POST['submit']))
     {
-        echo "HIIII";
         $query1 = "SELECT * FROM enrollment JOIN student 
                     WHERE enrollment.student_id = student.student_id
                     ORDER BY year_of_study DESC, timestamp ASC";
@@ -22,10 +21,10 @@
                 {
                     while($row2 = $result2->fetch_assoc())
                     {
-                        if($row2['capacity'] > 0)
+                        if($row2['available'] > 0)
                         {
-                             $capacity = $row2['capacity'] - 1;
-                            $query3 = "UPDATE section SET capacity = $capacity WHERE course_id = '$c_id' AND section_id = '$s_id'";
+                             $avail = $row2['available'] - 1;
+                            $query3 = "UPDATE section SET available = $avail WHERE course_id = '$c_id' AND section_id = '$s_id'";
                             $dbc->query($query3);
 
                             $query4 = "UPDATE enrollment SET status = 1 WHERE student_id = '$student_id' AND course_id = '$c_id'";
@@ -44,6 +43,12 @@
         
         $query6 = "UPDATE checker SET bool = 1 WHERE bool = 0";
         $dbc->query($query6);
+    }
+    
+    else{ //not set el post, asi que vamos para ver la matricula hecha
+        $query3 = "SELECT * FROM enrollment JOIN course JOIN section
+                    WHERE enrollment.course_id = course.course_id 
+                    AND course.section_id = section.section_id";
     }
 
     $queryCheck = "SELECT * FROM checker LIMIT 1";
@@ -75,6 +80,17 @@ Licence URI: http://www.os-templates.com/template-terms
 <!--<script type="text/javascript" src="../style/scripts/jquery.slidepanel.setup.js"></script>-->
 <script type="text/javascript" src="../style/scripts/jquery.ui.min.js"></script>
 <!--<script type="text/javascript" src="../style/scripts/jquery.tabs.setup.js"></script>-->
+    <style>
+    .student_link{
+        color: black;
+        
+    }
+    
+    .student_link:hover{
+       color: darkred;
+    }
+    
+</style>
 </head>
 <body>
 <!-- ####################################################################################################### -->
@@ -147,8 +163,55 @@ Licence URI: http://www.os-templates.com/template-terms
                 </form>';
               
             }
+        
             else
-                echo'AQUI VA LA TABLA DE MATRICULA COMO TAL';
+            {
+                $rowColor = 0;
+                $prev = 'no';
+                echo'<table style="text-aling:center" cellpadding="0" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Curso</th>
+                    <th>Seccion</th>
+                    <th>Capacidad</th>
+                    <th>Cantidad Disponible</th>
+                    <th>Matriculados</th>
+                  </tr>
+                </thead><tbody>';
+                
+                $query3 = "SELECT DISTINCT title, course.course_id, section.section_id, capacity, available
+                FROM enrollment NATURAL JOIN section NATURAL JOIN course
+                    ORDER BY enrollment.course_id ASC, enrollment.section_id ASC";
+                 if($result3 = $dbc->query($query3))
+                {
+                    while($row3 = $result3->fetch_assoc())
+                    {
+                        if($rowColor % 2 == 0)
+                            echo"<tr class='light' style='text-align:center'>";
+
+                        else
+                            echo"<tr class='dark' style='text-align:center'>";
+                        
+                        if($row3['course_id'] == $prev)
+                            echo"<td></td>";
+                        else
+                            echo"<td>".$row3['title']."</td>";
+
+
+                        echo"<td>".$row3['course_id']."-".$row3['section_id']."</td>
+                            <td>".$row3['capacity']."</td>
+                            <td>".$row3['available']."</td>
+                            <td><a title='Ver los matriculados' class='student_link' href='ver_matriculados.php?course=".$row3['course_id']."&section=".$row3['section_id']."'>Ver estudiantes</a></td>";
+
+
+                        $rowColor++;
+                        $prev = $row3['course_id'];
+                    }
+                }
+                
+                 echo"</table";
+            }
+            
 
         ?>
 

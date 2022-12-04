@@ -57,7 +57,7 @@
                         }
                     }
                     else{
-                        echo '<h3>Por favor registrarse</h3>';
+                        echo '<h3>Por favor registrarse o comunicarse con un admin</h3>';
                     }
                     $dbc->close();
                 }

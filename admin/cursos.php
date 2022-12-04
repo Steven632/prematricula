@@ -75,13 +75,23 @@ Licence URI: http://www.os-templates.com/template-terms
   <div id="topnav">
     <ul>
       <li class="active"><a href="cursos.php">Cursos</a>
+        <ul style="height: 100px">
+          <li><form action="#" method="post">
+        <fieldset>
+            <?php
+            if(isset($_POST['course']))
+                echo '<input style="height:30px;" type="text" name="course" placeholder="'.$_POST['course'].'" />';
+            else
+                echo ' <input style="height:30px;" type="text" name="course" placeholder="Escriba el ID del curso&hellip;" />';
+            ?>
+          <input id='search_submit' type="submit" name="submit2" id="news_go" value="Search" />
+        </fieldset>
+      </form></li>
+          </ul>
+        </li>
       <li><a href="estudiantes.php">Ver Estudiantes</a>
-          <ul style="height: 100px">
-        </ul>
       </li>
     <li><a href="prematricula.php">Informe Matrícula</a>
-          <ul style="height: 100px">
-        </ul>
       </li>
       <li><a href="logout.php">Logout</a>
       </li>
@@ -102,7 +112,14 @@ Licence URI: http://www.os-templates.com/template-terms
     <div style="float:none; display:block; width:1000px" id="content">
         <?php 
        
-       $query = "SELECT * FROM course";
+        if(isset($_POST['submit2']))
+        {
+            $course = $_POST['course'];
+            $query = "SELECT * FROM course WHERE course_id LIKE '%$course%';";
+        }
+        else
+            $query = "SELECT * FROM course";
+       
                     
         $rowColor = 0;
         echo'<table style="text-aling:center" cellpadding="0" cellspacing="0">

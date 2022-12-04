@@ -52,9 +52,12 @@
                                     header('location: users/matricula.php');
                             }
                         }
+                        else{
+                            echo '<h3>Asegurase de entarar su password correctamemte. <br/> vuelve a intentarlo....</h3>';
+                        }
                     }
                     else{
-                        echo '<h3>Asegurase de entarar su password correctamemte. <br/> vuelve a intentarlo.... <a href="login.php">login</a></h3>';
+                        echo '<h3>Por favor registrarse</h3>';
                     }
                     $dbc->close();
                 }

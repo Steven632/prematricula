@@ -56,6 +56,18 @@ Licence URI: http://www.os-templates.com/template-terms
         color: red;
     }
     
+    input[type=submit] {
+
+    background:url("../style/styles/images/file.png") top right no-repeat transparent;
+    height: 50px;
+    width: 50px;
+    float: right;
+    }
+
+    input[type=submit]:hover{
+        background:url("../style/styles/images/file2.png") top right no-repeat transparent;
+    }
+    
 </style>    
     
     
@@ -190,7 +202,7 @@ Licence URI: http://www.os-templates.com/template-terms
                                         echo'<input type="hidden" name="course_id" value="'.$row['course_id'].'">
                                          <input type="hidden" name="section_id" value="'.$row['section_id'].'">
                                         <li><a title="Añadir curso" href="#">'.$row['course_id'].'-'.$row['section_id'].'
-                                        <input type="submit" name="submit3" value=""></a></li>
+                                        <input type="submit" class="submit" name="submit3" value=""></a></li>
                                         </form>';
                                         $formid++;
                                 }
@@ -238,7 +250,7 @@ Licence URI: http://www.os-templates.com/template-terms
                                             echo '<input type="hidden" name="course_id" value="'.$row['course_id'].'">
                                             <input type="hidden" name="section_id" value="'.$row['section_id'].'">
                                             <li><a title="Añadir curso" href="#">'.$row['course_id'].'-'.$row['section_id'].'
-                                            <input type="submit" name="submit3" value=""></a></li>
+                                            <input class="submit" type="submit" name="submit3" value=""></a></li>
                                     </form> ';
                                     $formid++;
                                 }
@@ -256,7 +268,7 @@ Licence URI: http://www.os-templates.com/template-terms
                         if($check == true)
                         {
                             echo' <div id="featured_slide" class="flex-child">
-                              <div><h1>'.$row['course_id'].'</h1></div>
+                              <div class="Y"><h1>'.$row['course_id'].'</h1></div>
                             <div id="featured_wrap">
                                 <ul id="featured_tabs">
                                 <form>';
@@ -284,7 +296,7 @@ Licence URI: http://www.os-templates.com/template-terms
                                     echo '<input type="hidden" name="course_id" value="'.$row['course_id'].'">
                                     <input type="hidden" name="section_id" value="'.$row['section_id'].'">
                                     <li><a title="Añadir curso" href="#">'.$row['course_id'].'-'.$row['section_id'].'
-                                    <input type="submit" name="submit3" value=""></a></li>
+                                    <input class="submit" type="submit" name="submit3" value=""></a></li>
                                 </form> ';
                                 $formid++;
                         }

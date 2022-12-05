@@ -38,15 +38,16 @@ File: Featured Slider CSS
 
 input[type=submit] {
 
-background:url("images/file.png") top right no-repeat transparent;
 height: 50px;
 width: 50px;
-float: right;
-    
+    border-radius: 10px;
+    float: right;
 }
 
+
+
 input[type=submit]:hover{
-    background:url("images/file2.png") top right no-repeat transparent;
+    cursor: pointer;
 }
 
 #search_submit{

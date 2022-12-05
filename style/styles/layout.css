@@ -179,3 +179,13 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 .back{
     background-color: #F8F7DF;
 }
+
+.grid1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.Ya{
+    text-align: center;
+}

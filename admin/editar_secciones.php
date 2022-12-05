@@ -55,7 +55,7 @@ session_start();
 <?php
 	include("../db_info.php");
   
-
+  echo"<div class= 'grid1'>";
 	//echo "<p>Conexión exitosa al servidor.</p>";
 	if(isset($_GET['course_id']) || isset($_POST['course_id'])) //viene del index.php
 	{
@@ -111,7 +111,7 @@ session_start();
                  <form action="editar_secciones.php" method="post">
                  <table border=0>
                  <tr>
-                  <td width="800" align="right">Sección: </td><td>
+                  <td width="100" align="right">Sección: </td><td>
                   <input type="text" name="section_id" id="section_id" value="' .$row['section_id'].'" /></td>
                  </tr> 
                  <tr>
@@ -133,12 +133,12 @@ session_start();
         else
             print'<h3 style="color:red;">Error en el query: '.$dbc->error.'</h3>';
     }
-   
+   echo "</div>";
 
 $dbc->close();
 ?>
     
-<h3><a href="cursos.php"> Ver cursos</a></h3>
+<h3 class="Ya"><a href="cursos.php"> Ver cursos</a></h3>
 	</div>
 <div class="wrapper col1"><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 <!-- ####################################################################################################### -->

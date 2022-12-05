@@ -53,7 +53,7 @@
                             }
                         }
                         else{
-                            echo '<h3>Asegurase de entarar su password correctamemte. <br/> vuelve a intentarlo....</h3>';
+                            echo '<h3>Asegúrese de entrar su password correctamemte. <br/> vuelve a intentarlo....</h3>';
                         }
                     }
                     else{

@@ -62,7 +62,7 @@ Licence URI: http://www.os-templates.com/template-terms
 <!-- ####################################################################################################### -->
 <div style="text-align: center"class="wrapper col1">
     <br>
-    <h1 style="font-size: 48px">Eliminar Curso</h1>
+    <h1 style="font-size: 48px">Eliminar Sección</h1>
     <br><br>
 </div>
     
@@ -72,18 +72,20 @@ Licence URI: http://www.os-templates.com/template-terms
   <div id="container">
     <div style="float:none; display:block; width:1000px" id="content">
         <?php 
-         if(isset($_GET['course_id']))
+         if(isset($_GET['section_id']))
           {
-                $course_id = $_GET['course_id'];
+                $section_id = $_GET['section_id'];
+                // $section_id = $_GET['section_id'];
 
-               $query = "SELECT * FROM course WHERE course_id = '$course_id'";
+               $query = "SELECT * FROM section WHERE section_id = '$section_id'";
 
                  echo'<table style="text-aling:center" cellpadding="0" cellspacing="0">
                         <thead>
                           <tr>
-                            <th>Curso</th>
+                           
                             <th>Course ID</th>
-                            <th>Créditos</th>
+                            <th>Sección</th>
+                            
                           </tr>
                         </thead><tbody>';
                 if($result = $dbc->query($query))
@@ -97,30 +99,30 @@ Licence URI: http://www.os-templates.com/template-terms
                                 echo"<tr class='dark' style='text-align:center'>";
 
 
-                            echo"<td>".$row['title']."</td>
+                            echo"
                                 <td>".$row['course_id']."</td>
-                                <td>".$row['credits']."</td>";
+                                <td>".$row['section_id']."</td>";
 
                             $rowColor++;
 
                         }
-                        
+                       
                   }
              
                   else
                     print'<h3 style="color:red;">Error, el curso no se encontró en la tabla</h3>';
 
 
-              echo'<div class="wrapper col1"><h3><a href="eliminar_curso.php?del='.$course_id.'"> Borrar? </a></h3></div>';
-             
+              echo'<div class="wrapper col1"><h3><a href="eliminar_secciones.php?del='.$section_id.'"> Borrar? </a></h3></div>';
+             echo"</tbody></table";
              $dbc->close();
             }
             
             elseif(isset($_GET['del']) )
             {
                  //borrar est confirmado
-                $course = $_GET['del'];
-                 $query = "DELETE FROM course WHERE course_id='$course' LIMIT 1";
+                $section = $_GET['del'];
+                 $query = "DELETE FROM section WHERE section_id='$section' LIMIT 1";
                  if ($dbc->query($query) === TRUE) 
                    echo '<h3>El curso ha sido eliminado con éxito. </h3>';
                  else 
@@ -130,7 +132,7 @@ Licence URI: http://www.os-templates.com/template-terms
              } 
              else
                     print '<h3 style="color:red;">Esta página ha sido accedida con error</h3>';
-            echo"</tbody></table";
+            
             ?>
         
             <div class="wrapper col1">

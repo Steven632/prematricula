@@ -59,7 +59,16 @@
             $checker = $row['bool'];
         }
     }
-
+    if(isset($_POST['submit2']))
+    {
+    $query7 = "UPDATE checker SET bool = 0 WHERE bool = 1";
+        $dbc->query($query7);
+    $query8 = "DELETE FROM enrollment";
+    $dbc->query($query8);
+    $query9 = "UPDATE section set available = capacity";
+      $dbc->query($query9);
+    
+    }
     
 ?>
 
@@ -209,10 +218,17 @@ Licence URI: http://www.os-templates.com/template-terms
                     }
                 }
                 
-                 echo"</table";
-            }
-            
+                 
 
+            }
+            if($checker == 1)
+            {
+               echo'<form action"prematricula" method="post" id="form1">
+                <input type="submit" name="submit2" form="form1" value="Submit">Volver a abrir prematricula</input>
+                </form>';
+              
+            }
+            echo"</table";
         ?>
 
      

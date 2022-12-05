@@ -2,26 +2,6 @@
 
     session_start();
      include("../db_info.php");
-     $delete = 'NO';
-     if(isset($_POST['course_id']))
-    {
-        // echo"YES";
-        $c_id = $_POST['course_id'];
-        echo $c_id;
-       
-    
-        // $queryDel = "DELETE FROM course WHERE course_id = $c_id AND DELETE FROM section WHERE section.course_id=$c_id LIMIT  1 ";
-        $queryDel ="DELETE course, section FROM course INNER JOIN section ON course.course_id = section.course_id WHERE course.course_id=$c_id AND section.course_id = $c_id";
-        if($dbc->query($queryDel) === TRUE){
-           // echo"<br>Curso fue removido!";
-            $delete = true;
-        }
-            
-        else{
-            echo"<br>".$dbc->error;
-            $delete = false;
-        }
-    }
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -50,19 +30,7 @@ Licence URI: http://www.os-templates.com/template-terms
         <br><br>
         <h1>Portal de administrador de pre-matrícula </h1>
     </div>
-    <?php 
-        
-        if($delete == 'true')
-            echo"<h2>El curso fue removido!</h2>";
-        else if($delete == 'false')
-            echo"<h2>El curso no fue removido!</h2>";
-    ?> <?php 
-        
-    if($delete == 'true')
-        echo"<h2>El curso fue removido!</h2>";
-    else if($delete == 'false')
-        echo"<h2>El curso no fue removido!</h2>";
-?>
+    
 
     <div style="padding-right: 250px" class="fl_right">
      <img style="width: 600px; height: 120px" src="../style/images/logo_upra2.png">
@@ -152,6 +120,7 @@ Licence URI: http://www.os-templates.com/template-terms
                     <td><a href="editar_curso.php?course_id='.$row['course_id'].'">Editar curso</a></td>
                     <td><a href="editar_secciones.php?course_id='.$row['course_id'].'">Editar Secciones</a></td>
                     <td><a href="eliminar_curso.php?course_id='.$row['course_id'].'">Eliminar</a></td>
+                    
                     </tr>';
                     
                 
@@ -174,7 +143,7 @@ Licence URI: http://www.os-templates.com/template-terms
   </div>
 </div>
 
-    <div class="wrapper col1"><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
+    <div class="wrapper col1"><br><br><br><br><br><br><br><br><br><br></div>
 <!-- ####################################################################################################### -->
 
 <!-- ####################################################################################################### -->

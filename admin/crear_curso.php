@@ -95,7 +95,6 @@ if (isset($_GET['submit']))// procesar formulario
       <td align='right'>Creditos</td>
       <td align='left'><input name='credits' type='text' required /></td>
     </tr>
-   
     <tr>
    <td colspan='2' align='center'> <input type='submit' name='submit' class="formbutton" value='Insertar' /> </td>
     </tr> 

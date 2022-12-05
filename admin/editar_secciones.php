@@ -111,15 +111,20 @@ session_start();
                  <form action="editar_secciones.php" method="post">
                  <table border=0>
                  <tr>
-                  <td>Sección: </td><td>
+                  <td width="800" align="right">Sección: </td><td>
                   <input type="text" name="section_id" id="section_id" value="' .$row['section_id'].'" /></td>
                  </tr> 
                  <tr>
-                  <td>Capacidad: </td><td>
+                  <td align="right">Capacidad: </td><td>
                   <input type="tinyint" name="capacity" value="' .$row['capacity'].'" /></td>
                  <tr>
                  <input type="hidden" name="course_id" value="'. $course_id .'" />
-                    <td><input type="submit" name="Editar" id="Editar" class="formbutton" value="Editar" /></td>
+                 </tr>
+                 <tr>
+                    <td colspan="2"><input type="submit" name="Editar" id="Editar" class="formbutton" value="Editar" /></td>
+                 </tr>
+                 <tr>
+                 <td colspan="2"><a href="eliminar_secciones.php?section_id='.$row['section_id'].'">Eliminar</a></td>
                  </tr>
                 </table>
                 </form>

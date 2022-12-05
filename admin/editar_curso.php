@@ -78,19 +78,19 @@ if ($result->num_rows==1)
  print '<div>
  
  <form action="editar_curso.php" method="post">
- <table border=0>
+ <table <table width="349" border="0">
  <tr>
-  <td>Titulo del curso: </td><td>
-  <input type="text" name="new_title" value="' .$row['title'].'" /></td>
+  <td width="800" align="right">Titulo del curso: </td><td>
+  <input width="800" type="text" name="new_title" value="' .$row['title'].'" /></td>
  </tr> 
  <tr>
-  <td>Código: </td><td>
-  <input type="text" name="new_id" value="' .$row['course_id'].'" /></td>
+  <td width="800" align="right">Código: </td><td>
+  <input width="800" type="text" name="new_id" value="' .$row['course_id'].'" /></td>
  
  
 </tr>
- 	<td>Créditos: </td><td>
-  	<input type="number" name="new_creds" value="' .$row['credits'].'" /></td>
+ 	<td width="800" align="right">Créditos: </td><td>
+  	<input width="800" type="number" name="new_creds" value="' .$row['credits'].'" /></td>
 </tr>
 
 <input type="hidden" name="old_id" value="' .$row['course_id'].'" />
@@ -101,7 +101,7 @@ if ($result->num_rows==1)
 
  <tr>
  
-	<td><input type="submit" name="Editar" id="Editar" class="formbutton" value="Editar" /></td>
+	<td colspan="2"><input  type="submit" name="Editar" id="Editar" class="formbutton" value="Editar" /></td>
  </tr>
 </table>
 </form>

@@ -113,7 +113,7 @@ Licence URI: http://www.os-templates.com/template-terms
                     echo"<tr class='dark' style='text-align:center'>";
                   
                 
-                echo'<tr>
+                echo'
                     <td>'.$row["title"].'</td>
                     <td>'.$row["course_id"].'</td>
                     <td>'.$row["credits"].'</td>

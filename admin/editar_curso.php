@@ -100,7 +100,7 @@ if ($result->num_rows==1)
 
 
  <tr>
- 
+  <td ><a class="centroY" href="cursos.php"> Ver cursos</a></td>
 	<td colspan="2"><input  type="submit" name="Editar" id="Editar" class="formbutton" value="Editar" /></td>
  </tr>
 </table>
@@ -141,7 +141,6 @@ else
 
 $dbc->close();
 ?>
-<h3><a href="cursos.php"> Ver cursos</a></h3>
 	</div>
 <div class="wrapper col1"><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
 <!-- ####################################################################################################### -->

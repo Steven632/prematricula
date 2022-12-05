@@ -110,7 +110,7 @@ Licence URI: http://www.os-templates.com/template-terms
                   }
              
                   else
-                    print'<h3 style="color:red;">Error, el curso no se encontró en la tabla</h3>';
+                    print'<h3 style="color:red;">Error, la sección no se encontró en la tabla</h3>';
 
 
               echo'<div class="wrapper col1"><h3><a href="eliminar_secciones.php?del='.$section_id.'"> Borrar? </a></h3></div>';
@@ -124,9 +124,9 @@ Licence URI: http://www.os-templates.com/template-terms
                 $section = $_GET['del'];
                  $query = "DELETE FROM section WHERE section_id='$section' LIMIT 1";
                  if ($dbc->query($query) === TRUE) 
-                   echo '<h3>El curso ha sido eliminado con éxito. </h3>';
+                   echo '<h3>La sección ha sido eliminado con éxito. </h3>';
                  else 
-                   print '<h3 style="color:red;">No se pudo eliminar el curso porque:<br />' . $dbc->error. '</h3>';
+                   print '<h3 style="color:red;">No se pudo eliminar la sección porque:<br />' . $dbc->error. '</h3>';
                 
                 $dbc->close();
              } 

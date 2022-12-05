@@ -62,7 +62,7 @@ if (isset($_GET['submit']))// procesar formulario
     // $creditos= $_GET['credits'];
     $section=$_GET['section_id'];
     $capacidad= $_GET['capacity'];
-    $query =  "INSERT INTO section ( course_id, section_id, capacity) VALUES ( '$course_id', '$section', $capacidad)";
+    $query =  "INSERT INTO section ( course_id, section_id, capacity, available) VALUES ( '$course_id', '$section', $capacidad, $capacidad)";
     // "INSERT INTO course (title, course_id, credits)
     //             		VALUES ('$nombre', '$course_id', $creditos)";
                       // INSERT INTO section ( course_id, section_id, capacity) VALUES ( '$course_id', '$section', $capacidad)
@@ -72,15 +72,20 @@ if (isset($_GET['submit']))// procesar formulario
     if ($dbc->query($query) === TRUE) 
     {
         	// $last_id = $dbc->insert_id;
-        	print "<h3>La sección ha sido creada con éxito.</h3>";
+        	print "<div class='wrapper col1' style='text-align: center'> <h3>La sección ha sido creada con éxito.</h3><div>";
     }
     else
-        	print'<h3 style="color:red;">No se pudo crear la sección del curso. Error: '.$dbc->error.'</h3>';
+        	print'<div class="wrapper col1" style="text-align: center"> <h3 style="color:red;">No se pudo crear la sección del curso. Error: '.$dbc->error.'</h3></div>';
 	}
 ?>
 
 
 <div class="wrapper col1">
+     <div style="text-align: center"class="wrapper col1">
+                <br>
+                <h1 style="font-size: 48px">Crear sección nueva</h1>
+                <br><br>
+            </div>
 <form id='form1' name='form1' method='get' action='crear_secciones.php'>
   <table width='349' border='0'>
     
@@ -106,11 +111,12 @@ if (isset($_GET['submit']))// procesar formulario
     </tr>
     
     <tr>
-      	      <td colspan='2' align='center'><input type='submit' name='submit' class="formbutton" value='Insertar'/></td>
+      	     <tr>
+  <td ><a class="centroY" href="cursos.php"> Ver cursos</a></td>
+   <td align='center'> <input style="width: 60px" type='submit' name='submit' class="formbutton" value='Insertar' /> </td>
     </tr> 
   </table>
 </form>
-<h3><a href="cursos.php"> Ver cursos </a></h3>
 </div>
 </div>
 <div class="wrapper col1"><br><br><br><br><br><br><br><br><br><br><br><br><br></div>

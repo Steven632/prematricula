@@ -71,15 +71,21 @@ if (isset($_GET['submit']))// procesar formulario
     if ($dbc->query($query) === TRUE) 
     {
         	// $last_id = $dbc->insert_id;
-        	print "<h3>El curso ha sido creado con éxito.</h3>";
+        	print "<div class='wrapper col1' style='text-align: center'> <h3>El curso ha sido creado con éxito.</h3><div>";
     }
     else
-        	print'<h3 style="color:red;">No se pudo crear el curso. Error: '.$dbc->error.'</h3>';
+        	print'<div class="wrapper col1" style="text-align: center"> <h3 style="color:red;">No se pudo crear el curso. Error: '.$dbc->error.'</h3></div>';
 	}
 ?>
 
 <!—Formulario solicitando datos del estudiante de honor -->
 <div class="wrapper col1">
+    
+     <div style="text-align: center"class="wrapper col1">
+                <br>
+                <h1 style="font-size: 48px">Crear curso nuevo</h1>
+                <br><br>
+            </div>
 <a href="crear_secciones.php">
 <form id='form1' name='form1' method='get' action='crear_curso.php'></a>
   <table width='349' border='0'>
@@ -96,11 +102,11 @@ if (isset($_GET['submit']))// procesar formulario
       <td align='left'><input name='credits' type='text' required /></td>
     </tr>
     <tr>
-   <td colspan='2' align='center'> <input type='submit' name='submit' class="formbutton" value='Insertar' /> </td>
+  <td ><a class="centroY" href="crear_secciones.php"> Crear secciones</a></td>
+   <td align='center'> <input style="width: 60px" type='submit' name='submit' class="formbutton" value='Insertar' /> </td>
     </tr> 
   </table>
 </form>
-<h3><a href="crear_secciones.php"> Crear Secciones </a></h3>
 </div>
 </div>
 <div class="wrapper col1"><br><br><br><br><br><br><br><br><br><br><br><br><br></div>

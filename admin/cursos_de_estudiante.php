@@ -1,6 +1,12 @@
 <?php
     session_start();
+    if(!isset($_SESSION['nombre'])){
+      print '<h3 style="color:red;">Esta pagina ha sido accedida por equivocacion. haga<a href="../index.php">login</a></h3>';
+      die();
+      exit;
+  }
      include("../db_info.php");
+     
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

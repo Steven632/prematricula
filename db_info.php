@@ -1,4 +1,10 @@
 <?php 
+session_start();
+if(!isset($_SESSION['nombre'])){
+    print '<h3 style="color:red;">Esta pagina ha sido accedida por equivocacion. haga<a href="../index.php">login</a></h3>';
+    die();
+    exit;
+}
     $titulo = "Primera Clase de PHP";
 
 //local version

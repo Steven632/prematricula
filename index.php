@@ -6,7 +6,7 @@
 	<meta name="viewport"
 		content="width=device-width,
 						initial-scale=1.0">
-	<title>GeeksforGeeks</title>
+	<title>Prematricula</title>
 	<link rel="stylesheet" href="./style/styles/index.css">
 </head>
 

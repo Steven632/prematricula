@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    if(!isset($_SESSION['nombre'])){
+    if(!isset($_SESSION['name'])){
       print '<h3 style="color:red;">Esta pagina ha sido accedida por equivocacion. haga<a href="../index.php">login</a></h3>';
       die();
       exit;
